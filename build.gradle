@@ -1,0 +1,65 @@
+import com.gtnewhorizons.retrofuturagradle.mcp.InjectTagsTask
+
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'com.gtnewhorizons.retrofuturagradle' version '2.0.2'
+}
+
+group = 'com.kaduvill.configurabledrawer'
+version = '0.3.0'
+java {
+    toolchain { languageVersion.set(JavaLanguageVersion.of(17)) }
+    withSourcesJar()
+}
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('compileJava', JavaCompile) {
+    options.release.set(8)
+}
+
+minecraft {
+    mcVersion.set('1.12.2')
+    mcpMappingChannel.set('stable')
+    mcpMappingVersion.set('39')
+    useForgeEmbeddedMappings.set(false)
+    useDependencyAccessTransformers.set(true)
+    username.set('Developer')
+    injectedTags.put('VERSION', project.version.toString())
+    injectedTags.put('MC_VERSION', mcVersion.get())
+}
+base { archivesName.set("configurable-drawer-${minecraft.mcVersion.get()}") }
+
+tasks.named('injectTags', InjectTagsTask).configure {
+    outputClassName.set('com.kaduvill.configurabledrawer.Tags')
+}
+
+tasks.named('compileInjectedTagsJava', JavaCompile).configure {
+    options.release.set(8)
+}
+
+tasks.named('processResources').configure {
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', minecraft.mcVersion.get()
+    filesMatching('mcmod.info') {
+        expand(version: project.version.toString(), mcversion: minecraft.mcVersion.get())
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url = uri('https://cursemaven.com') }
+    maven { url = uri('https://maven.cleanroommc.com') }
+    maven { url = uri('https://nexus.gtnewhorizons.com/repository/public/') }
+}
+dependencies {
+    implementation rfg.deobf('curse.maven:storage-drawers-223852:5981297') // 5.5.3
+    implementation rfg.deobf('curse.maven:chameleon-230497:2450900') // 4.1.3
+
+    compileOnly rfg.deobf('curse.maven:had-enough-items-557549:8081514') // HEI 4.31.2
+    runtimeOnly rfg.deobf('curse.maven:had-enough-items-557549:8081514')
+
+    compileOnly(rfg.deobf('curse.maven:the-one-probe-245211:2667280')) {transitive = false}
+}

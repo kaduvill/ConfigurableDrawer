@@ -1,0 +1,15 @@
+[
+  {
+    "modid": "configurabledrawer",
+    "name": "Configurable Drawer",
+    "description": "One explicitly filtered drawer with a configurable long capacity, a GUI and Storage Drawers controller support.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "authorList": [
+      "kaduvill"
+    ],
+    "dependencies": [
+      "storagedrawers"
+    ]
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "parent": "storagedrawers:block/drawer_orientable",
+  "textures": {
+    "top": "configurabledrawer:blocks/drawer_side",
+    "front": "configurabledrawer:blocks/drawer_front",
+    "side": "configurabledrawer:blocks/drawer_side",
+    "trim": "configurabledrawer:blocks/drawer_trim"
+  }
+}

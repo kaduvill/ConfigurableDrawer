@@ -1,0 +1,31 @@
+{
+  "conditions": [
+    { "type": "minecraft:item_exists", "item": "storagedrawers:basicdrawers" },
+    { "type": "minecraft:item_exists", "item": "storagedrawers:upgrade_storage" },
+    { "type": "minecraft:item_exists", "item": "storagedrawers:upgrade_void" },
+    { "type": "minecraft:item_exists", "item": "storagedrawers:upgrade_redstone" },
+    { "type": "minecraft:item_exists", "item": "storagedrawers:upgrade_status" },
+    { "type": "minecraft:item_exists", "item": "storagedrawers:shroud_key" },
+    { "type": "minecraft:item_exists", "item": "storagedrawers:drawer_key" }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "KCL",
+    "VDR",
+    "ASB"
+  ],
+  "key": {
+    "K": { "item": "storagedrawers:shroud_key" },
+    "L": { "item": "storagedrawers:drawer_key" },
+    "A": { "item": "storagedrawers:upgrade_redstone", "data": 1 },
+    "B": { "item": "storagedrawers:upgrade_redstone", "data": 2 },
+    "C": { "item": "storagedrawers:upgrade_storage", "data": 4 },
+    "V": { "item": "storagedrawers:upgrade_void" },
+    "D": { "type": "configurabledrawer:empty_oak_full_drawer" },
+    "R": { "item": "storagedrawers:upgrade_redstone", "data": 0 },
+    "S": { "item": "storagedrawers:upgrade_status", "data": 1 }
+  },
+  "result": {
+    "item": "configurabledrawer:configurable_drawer"
+  }
+}

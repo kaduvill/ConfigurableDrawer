@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "configurabledrawer:configurable_drawer"
+    },
+    "facing=east": {
+      "model": "configurabledrawer:configurable_drawer",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "configurabledrawer:configurable_drawer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "configurabledrawer:configurable_drawer",
+      "y": 270
+    }
+  }
+}

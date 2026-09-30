@@ -1,0 +1,5 @@
+{
+  "ingredients": {
+    "empty_oak_full_drawer": "com.kaduvill.configurabledrawer.compat.EmptyBasicDrawerIngredientFactory"
+  }
+}

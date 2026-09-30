@@ -16,5 +16,4 @@ Mining a drawer in survival drops it with its filter, settings, and contents int
 
 ## Configuration
 
-`config/configurabledrawer.cfg` sets the default capacity for new drawers and the maximum allowed capacity. 
-Both default to 65,536 items. Changes require a restart.
+`config/configurabledrawer.cfg` sets the default capacity for new drawers and the maximum allowed capacity. Both default to 65,536 items. Changes require a restart.

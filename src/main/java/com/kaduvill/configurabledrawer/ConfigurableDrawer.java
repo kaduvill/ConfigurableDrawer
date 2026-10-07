@@ -38,7 +38,6 @@ public final class ConfigurableDrawer {
     public static final BlockConfigurableDrawer BLOCK = new BlockConfigurableDrawer();
     public static final ItemBlock ITEM = (ItemBlock) new ItemBlockConfigurableDrawer(BLOCK)
                     .setRegistryName(MODID, "configurable_drawer")
-                    .setMaxStackSize(1)
                     .setCreativeTab(CreativeTabs.DECORATIONS);
 
     @Mod.EventHandler public void preInit(FMLPreInitializationEvent event) {

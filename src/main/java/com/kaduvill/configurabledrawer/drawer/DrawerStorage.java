@@ -31,8 +31,7 @@ public final class DrawerStorage {
     public long remaining() { return filtered() ? quantity.remaining() : 0; }
     public boolean matches(ItemStack stack) {
         return !stack.isEmpty() && filtered() && ItemStack.areItemsEqual(filter, stack)
-                && ItemStack.areItemStackTagsEqual(filter, stack)
-                && filter.areCapsCompatible(stack);
+                && ItemStack.areItemStackTagsEqual(filter, stack);
     }
     public boolean setFilter(ItemStack stack) {
         if (count() != 0) return matches(stack);

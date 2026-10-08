@@ -50,13 +50,14 @@ public final class DrawerFrameModel implements IBakedModel {
             public IBakedModel handleItemState(IBakedModel original, ItemStack stack,
                                                @Nullable World world, @Nullable EntityLivingBase entity) {
                 NBTTagCompound tag = stack.getTagCompound();
-                if (tag == null) return DrawerFrameModel.this;
+                if (tag == null || !hasMaterials(tag)) return DrawerFrameModel.this;
 
                 // Exclude DrawerData: counts/filter/capacity are not model-cache keys.
+                // Borrow tags for lookup; resolve() copies retained keys.
                 NBTTagCompound materials = new NBTTagCompound();
                 for (String key : KEYS) {
                     if (tag.hasKey(key, 10))
-                        materials.setTag(key, tag.getCompoundTag(key).copy());
+                        materials.setTag(key, tag.getCompoundTag(key));
                 }
                 return resolve(materials);
             }
@@ -119,7 +120,8 @@ public final class DrawerFrameModel implements IBakedModel {
     @Nullable
     private static TextureAtlasSprite texture(NBTTagCompound materials, String key) {
         if (!materials.hasKey(key, 10)) return null;
-        ItemStack material = new ItemStack(materials.getCompoundTag(key));
+        // Keep item initialization and model overrides isolated from the cache key.
+        ItemStack material = new ItemStack(materials.getCompoundTag(key).copy());
         if (material.isEmpty()) return null;
 
         Minecraft minecraft = Minecraft.getMinecraft();

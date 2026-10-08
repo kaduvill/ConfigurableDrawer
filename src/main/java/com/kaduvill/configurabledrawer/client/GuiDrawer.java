@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.kaduvill.configurabledrawer.client.render.DrawerPreview;
+import com.kaduvill.configurabledrawer.drawer.DrawerNumberFormat;
 import com.kaduvill.configurabledrawer.drawer.DrawerStorage;
 import com.kaduvill.configurabledrawer.drawer.SideRules;
 import com.kaduvill.configurabledrawer.menu.ContainerDrawer;
@@ -455,20 +456,8 @@ public final class GuiDrawer extends GuiContainer {
         fontRenderer.drawString(I18n.format("configurabledrawer.inventory"), 48, 128, 0x404040);
     }
 
-    private static String compactNumber(long value) {
-        final long[] divisors = {1_000_000_000_000_000_000L, 1_000_000_000_000_000L, 1_000_000_000_000L, 1_000_000_000L, 1_000_000L, 1_000L};
-        final String[] suffixes = {"E", "Q", "T", "B", "M", "K"};
-        for (int i = 0; i < divisors.length; i++) {
-            long divisor = divisors[i];
-            if (value >= divisor) {
-                long tenths = value / (divisor / 10L);
-                return (tenths / 10L) + "." + (tenths % 10L) + suffixes[i];
-            }
-        }
-        return Long.toString(value);
-    }
     private static String fullNumber(long value) {return String.format(Locale.ROOT, "%,d", value);}
-    private String storedText() {return I18n.format("configurabledrawer.stored", compactNumber(drawer.shownCount));}
+    private String storedText() {return I18n.format("configurabledrawer.stored", DrawerNumberFormat.compact(drawer.shownCount));}
 
     private Rectangle previewArea() {
         return new Rectangle(guiLeft + 148, guiTop + 24, 92, 88);

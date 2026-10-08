@@ -2,6 +2,7 @@
 - Fixed empty drawers with default settings not stacking with unplaced drawers after breaking
 - Improved item matching performance by removing duplicate capability checks
 - Reduced unnecessary facing lookups during controller access
+- Reduced GUI number formatting allocations
 
 0.3.1
 - Fixed drawers not stacking

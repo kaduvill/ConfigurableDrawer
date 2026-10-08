@@ -217,7 +217,10 @@ public final class TileConfigurableDrawer extends TileEntity implements IDrawerG
 
         Port(@Nullable EnumFacing side) { this.side = side; }
 
-        int mode() { return SideRules.mode(storage.sides(), SideRules.entry(side, front())); }
+        int mode() {
+            return SideRules.mode(storage.sides(),
+                    side == null ? SideRules.UNSIDED : SideRules.entry(side, front()));
+        }
         boolean input() {
             return active() && storage.filtered() && SideRules.inserts(mode());
         }

@@ -1,5 +1,5 @@
 0.3.2
-- a
+- Fixed empty drawers with default settings not stacking with unplaced drawers after breaking
 
 0.3.1
 - Fixed drawers not stacking

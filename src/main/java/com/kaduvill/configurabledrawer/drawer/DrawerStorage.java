@@ -134,6 +134,12 @@ public final class DrawerStorage {
         if (!simulate && moved != 0) changed.run();
         return stack(moved);
     }
+    /** Default item drops omit storage NBT so they stack with newly crafted drawers. */
+    public boolean isDefault() {
+        return !filtered() && unresolvedFilter == null && count() == 0
+                && capacity() == DrawerConfig.defaultCapacity && sides == 0
+                && !voidOverflow && frontIcon && redstone == REDSTONE_DISABLED && threshold == 0;
+    }
     public NBTTagCompound write() {
         NBTTagCompound tag = new NBTTagCompound();
         tag.setInteger("Version", 1);

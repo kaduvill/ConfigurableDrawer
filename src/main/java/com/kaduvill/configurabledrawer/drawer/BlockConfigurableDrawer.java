@@ -173,10 +173,12 @@ public final class BlockConfigurableDrawer extends Block implements INetworked {
         ItemStack stack = new ItemStack(ConfigurableDrawer.ITEM);
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileConfigurableDrawer) {
+            TileConfigurableDrawer drawer = (TileConfigurableDrawer) tile;
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setTag("DrawerData", ((TileConfigurableDrawer) tile).storage().write());
-            ((TileConfigurableDrawer) tile).writeMaterials(tag);
-            stack.setTagCompound(tag);
+            if (!drawer.storage().isDefault())
+                tag.setTag("DrawerData", drawer.storage().write());
+            drawer.writeMaterials(tag);
+            if (!tag.isEmpty()) stack.setTagCompound(tag);
         }
         drops.add(stack);
     }

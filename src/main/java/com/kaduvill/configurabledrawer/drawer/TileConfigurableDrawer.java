@@ -281,7 +281,7 @@ public final class TileConfigurableDrawer extends TileEntity implements IDrawerG
         @Nonnull @Override public ItemStack extractItem(int slot, int amount, boolean simulate) {
             if (slot != 1 || amount <= 0 || !output()) return ItemStack.EMPTY;
             // Forge's handler contract limits extraction to one normal item stack.
-            return storage.extract(Math.min(amount, storage.filter().getMaxStackSize()), simulate);
+            return storage.extractStack(amount, simulate);
         }
         @Override public int getSlotLimit(int slot) {
             if (slot == 0) return Integer.MAX_VALUE;
@@ -331,7 +331,7 @@ public final class TileConfigurableDrawer extends TileEntity implements IDrawerG
             if (amount > 0)
                 return input() ? amount - storage.add(amount, false) : amount;
             if (amount < 0)
-                return output() ? -amount - storage.extract(-amount, false).getCount() : -amount;
+                return output() ? -amount - storage.extractCount(-amount, false) : -amount;
             return 0;
         }
         @Override public int getMaxCapacity(@Nonnull ItemStack stack) {

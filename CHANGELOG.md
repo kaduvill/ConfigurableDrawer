@@ -4,6 +4,7 @@
 - Reduced unnecessary facing lookups during controller access
 - Reduced GUI number formatting allocations
 - Reduced drawer item rendering allocations
+- Reduced temporary stack copies during automation and controller extraction
 
 0.3.1
 - Fixed drawers not stacking

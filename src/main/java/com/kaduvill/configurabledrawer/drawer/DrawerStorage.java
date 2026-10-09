@@ -127,11 +127,23 @@ public final class DrawerStorage {
         quantity.setVisibleCount(amount);
         if (before != count()) changed.run();
     }
-    public ItemStack extract(int amount, boolean simulate) {
-        if (!filtered()) return ItemStack.EMPTY;
+    int extractCount(int amount, boolean simulate) {
+        if (!filtered()) return 0;
         int moved = quantity.extract(amount, simulate);
         if (!simulate && moved != 0) changed.run();
-        return stack(moved);
+        return moved;
+    }
+    public ItemStack extract(int amount, boolean simulate) {
+        return stack(extractCount(amount, simulate));
+    }
+    /** One normal stack for automation; item hooks receive a copy of the filter. */
+    ItemStack extractStack(int amount, boolean simulate) {
+        if (!filtered() || amount <= 0 || count() == 0) return ItemStack.EMPTY;
+        ItemStack result = filter.copy();
+        int moved = extractCount(Math.min(amount, result.getMaxStackSize()), simulate);
+        if (moved == 0) return ItemStack.EMPTY;
+        result.setCount(moved);
+        return result;
     }
     /** Default item drops omit storage NBT so they stack with newly crafted drawers. */
     public boolean isDefault() {

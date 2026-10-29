@@ -140,7 +140,7 @@ public final class DrawerStorage {
     ItemStack extractStack(int amount, boolean simulate) {
         if (!filtered() || amount <= 0 || count() == 0) return ItemStack.EMPTY;
         ItemStack result = filter.copy();
-        int moved = extractCount(Math.min(amount, result.getMaxStackSize()), simulate);
+        int moved = extractCount(amount, simulate);
         if (moved == 0) return ItemStack.EMPTY;
         result.setCount(moved);
         return result;

@@ -1,3 +1,6 @@
+0.3.3
+Fixed a bug where automation connected directly to a drawer couldn't extract more than one stack per operation
+
 0.3.2
 - Fixed empty drawers with default settings not stacking with unplaced drawers after breaking
 - Improved item matching performance by removing duplicate capability checks
